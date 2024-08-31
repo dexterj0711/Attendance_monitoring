@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Inventory Management Dashboard</title>
+  <link href="/static/styles.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="flex h-screen bg-gray-100">
+  <!-- Sidebar -->
+  <div class="w-64 bg-gray-800 text-gray-200 shadow-md flex flex-col">
+    <div class="flex-shrink-0 px-4 py-6 text-center bg-gray-900 ">
+      <h1 class="text-xl font-semibold">A[Monitoring]</h1>
+    </div>
+    <nav class="flex-1 px-2 py-4">
+      <ul class="space-y-2">
+        <li>
+          <a href="{{ url_for('userDashboard.userDashboard')}}" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 rounded-lg">
+            <span data-feather="home" class="w-6 h-6 mr-3 text-gray-400"></span>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('classroom.classroom')}}" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 rounded-lg">
+            <span data-feather="book" class="w-6 h-6 mr-3 text-gray-400"></span>
+            Classrooms
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('subject.subject')}}" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 rounded-lg">
+            <span data-feather="book-open" class="w-6 h-6 mr-3 text-gray-400"></span>
+            Subjects
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex items-center p-2 text-gray-300 hover:bg-gray-700 rounded-lg">
+            <span data-feather="user" class="w-6 h-6 mr-3 text-gray-400"></span>
+            Instructors
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <script>
+    feather.replace();  // For Feather Icons
+  </script>
+</body>
+</html>

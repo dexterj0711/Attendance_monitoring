@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Main content -->
+<div class="flex-1 flex flex-col">
+  <!-- Top Navigation Bar -->
+  <nav class="bg-white-800 text-white py-3 px-6 shadow-md">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <!-- Heading -->
+      <h2 class="text-3xl font-extrabold text-gray-700">Attendance</h2>
+
+      <!-- Navigation Icons -->
+      <div class="flex items-center space-x-6">
+        <!-- Messages Icon -->
+        <a href="#" id="message-icon" class="text-gray-700 hover:text-blue-500 flex items-center transition-colors duration-300">
+          <i class="fas fa-envelope w-12 h-6 text-2xl"></i>
+          <span class="sr-only">Messages</span>
+        </a>
+
+        <!-- Statistics Icon -->
+        <a href="/statistics" class="text-gray-700 hover:text-blue-500 flex items-center transition-colors duration-300">
+          <i class="fas fa-chart-line w-12 h-6 text-2xl"></i>
+          <span class="sr-only">Statistics</span>
+        </a>
+
+        <!-- Students Icon -->
+        <a href="/students" class="text-gray-700 hover:text-blue-500 flex items-center transition-colors duration-300">
+          <i class="fas fa-users w-12 h-6 text-2xl"></i>
+          <span class="sr-only">Students</span>
+        </a>
+
+        <!-- Attendance History Icon -->
+        <a href="#" id="attendance-history-icon" class="text-gray-700 hover:text-blue-500 flex items-center transition-colors duration-300">
+          <i class="fas fa-history w-12 h-6 text-2xl"></i>
+          <span class="sr-only">Attendance History</span>
+        </a>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="relative w-full max-w-md">
+        <input 
+          type="text" 
+          placeholder="Search students..." 
+          class="w-full p-3 pl-10 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        />
+        <svg 
+          class="absolute top-3 left-3 w-5 h-5 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2"
+            d="M11 4a7 7 0 100 14 7 7 0 000-14zm0 0l6 6"
+          />
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-1 overflow-y-auto p-6 space-y-6">
+    <!-- Attendance Table -->
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800">Student Attendance</h3>
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-200 border-b">
+            <th class="p-3 text-left text-gray-600">Name</th>
+            <th class="p-3 text-left text-gray-600">Course</th>
+            <th class="p-3 text-left text-gray-600">Schedule</th>
+            <th class="p-3 text-left text-gray-600">Date</th>
+            <th class="p-3 text-left text-gray-600">Time</th>
+            <th class="p-3 text-left text-gray-600">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example Attendance Items -->
+          <tr class="border-b">
+            <td class="p-3 text-gray-700">John Doe</td>
+            <td class="p-3 text-gray-700">Mathematics</td>
+            <td class="p-3 text-gray-700">9:00 AM - 10:00 AM</td>
+            <td class="p-3 text-gray-700">2024-08-24</td>
+            <td class="p-3 text-gray-700">09:00 AM</td>
+            <td class="p-3 text-gray-700 flex space-x-2">
+              <a href="/attendance/mark/present/1" class="px-3 py-1 text-xs font-medium text-white bg-green-500 hover:bg-green-600 rounded-full">Present</a>
+              <a href="/attendance/mark/absent/1" class="px-3 py-1 text-xs font-medium text-white bg-red-500 hover:bg-red-600 rounded-full">Absent</a>
+              <a href="/attendance/mark/late/1" class="px-3 py-1 text-xs font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-full">Late</a>
+            </td>
+          </tr>
+          <tr class="border-b">
+            <td class="p-3 text-gray-700">Jane Smith</td>
+            <td class="p-3 text-gray-700">Science</td>
+            <td class="p-3 text-gray-700">10:00 AM - 11:00 AM</td>
+            <td class="p-3 text-gray-700">2024-08-24</td>
+            <td class="p-3 text-gray-700">10:00 AM</td>
+            <td class="p-3 text-gray-700 flex space-x-2">
+              <a href="/attendance/mark/present/2" class="px-3 py-1 text-xs font-medium text-white bg-green-500 hover:bg-green-600 rounded-full">Present</a>
+              <a href="/attendance/mark/absent/2" class="px-3 py-1 text-xs font-medium text-white bg-red-500 hover:bg-red-600 rounded-full">Absent</a>
+              <a href="/attendance/mark/late/2" class="px-3 py-1 text-xs font-medium text-white bg-yellow-500 hover:bg-yellow-600 rounded-full">Late</a>
+            </td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+      <!-- Attendance History Link -->
+      <div class="mt-6 flex justify-end">
+        <a href="#" id="attendance-history-icon" class="text-blue-500 hover:text-blue-700 text-lg font-medium">View Attendance History</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Messages -->
+  <div id="message-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800">SMS Message</h3>
+      <form action="/send-message" method="POST">
+        <div class="mb-4">
+          <label for="student" class="block text-gray-700">Student</label>
+          <select id="student" name="student" class="w-full p-3 border border-gray-300 rounded-lg">
+            <option value="1">John Doe</option>
+            <option value="2">Jane Smith</option>
+            <!-- Add more options as needed -->
+          </select>
+        </div>
+        <div class="mb-4">
+          <label for="message" class="block text-gray-700">Message</label>
+          <textarea id="message" name="message" rows="4" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="Type your message here..."></textarea>
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="button" id="modal-close" class="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg">Close</button>
+          <button type="submit" class="px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal for Attendance History -->
+  <div id="attendance-history-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-3/4 max-w-3xl">
+      <h3 class="text-2xl font-semibold mb-4 text-gray-800">Attendance History</h3>
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="bg-gray-200 border-b">
+            <th class="p-3 text-left text-gray-600">Date</th>
+            <th class="p-3 text-left text-gray-600">Subject Code</th>
+            <th class="p-3 text-left text-gray-600">Subject Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example History Items -->
+          <tr class="border-b">
+            <td class="p-3 text-gray-700">2024-08-24</td>
+            <td class="p-3 text-gray-700">MATH101</td>
+            <td class="p-3 text-gray-700">Mathematics</td>
+          </tr>
+          <tr class="border-b">
+            <td class="p-3 text-gray-700">2024-08-24</td>
+            <td class="p-3 text-gray-700">SCI202</td>
+            <td class="p-3 text-gray-700">Science</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+      <!-- Close Button -->
+      <div class="mt-6 flex justify-end">
+        <button type="button" id="history-modal-close" class="px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-lg">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('message-icon').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('message-modal').classList.remove('hidden');
+  });
+
+  document.getElementById('modal-close').addEventListener('click', function() {
+    document.getElementById('message-modal').classList.add('hidden');
+  });
+
+  document.getElementById('message-modal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      this.classList.add('hidden');
+    }
+  });
+
+  document.getElementById('attendance-history-icon').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('attendance-history-modal').classList.remove('hidden');
+  });
+
+  document.getElementById('history-modal-close').addEventListener('click', function() {
+    document.getElementById('attendance-history-modal').classList.add('hidden');
+  });
+
+  document.getElementById('attendance-history-modal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      this.classList.add('hidden');
+    }
+  });
+</script>
+{% endblock %}

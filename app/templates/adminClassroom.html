@@ -1,0 +1,119 @@
+{% extends 'adminBase.html' %}
+{% block content %}
+
+<div class="flex-1 flex flex-col">
+    <!-- Top Navigation Bar -->
+    <nav class="bg-white-800 text-white py-3 px-6 shadow-md">
+        <div class="flex items-center justify-between max-w-7xl mx-auto">
+            <!-- Heading -->
+            <h2 class="text-3xl font-extrabold text-gray-700">Classrooms</h2>
+
+            <!-- Search Bar -->
+            <div class="relative w-full max-w-md">
+                <input 
+                    type="text" 
+                    placeholder="Search classrooms..." 
+                    class="w-full p-3 pl-10 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+                />
+                <svg 
+                    class="absolute top-3 left-3 w-5 h-5 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        stroke-width="2"
+                        d="M11 4a7 7 0 100 14 7 7 0 000-14zm0 0l6 6"
+                    />
+                </svg>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-6">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-bold">Classrooms List</h2>
+            <button 
+                id="openModalButton"
+                class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-300"
+            >
+                Add Classroom
+            </button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for rooms in classrooms %}
+            <!-- Classroom Card Example 1 -->
+            <div class="bg-white p-4 rounded-lg shadow-md flex items-center space-x-4">
+                <div class="flex-1">
+                    <h3 class="text-xl font-semibold">{{rooms[2]}}</h3>
+                    <p class="text-gray-600">Room NO. {{rooms[1]}}</p>
+                </div>
+                <a href="#" class="text-blue-500 hover:underline">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modal for Adding Classroom -->
+    <div id="addClassroomModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
+            <h3 class="text-xl font-semibold mb-4">Add Classroom</h3>
+            <form action="/adminAddClassroom" method="POST">
+                <div class="mb-4">
+                    <label for="roomNumber" class="block text-gray-700">Room Number</label>
+                    <input 
+                        type="text" 
+                        id="roomNumber" 
+                        name="roomNumber" 
+                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Enter room number"
+                        required
+                    />
+                </div>
+                <div class="mb-4">
+                    <label for="classroomName" class="block text-gray-700">Classroom Name</label>
+                    <input 
+                        type="text" 
+                        id="classroomName" 
+                        name="classroomName" 
+                        class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Enter classroom name"
+                        required
+                    />
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button 
+                        type="button" 
+                        id="closeModalButton" 
+                        class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition duration-300"
+                    >
+                        Cancel
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+                    >
+                        Add Classroom
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle modal opening and closing
+        document.getElementById('openModalButton').addEventListener('click', function() {
+            document.getElementById('addClassroomModal').classList.remove('hidden');
+        });
+
+        document.getElementById('closeModalButton').addEventListener('click', function() {
+            document.getElementById('addClassroomModal').classList.add('hidden');
+        });
+    </script>
+</div>
+
+{% endblock %}

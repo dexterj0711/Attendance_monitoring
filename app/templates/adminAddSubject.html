@@ -1,0 +1,203 @@
+{% extends 'adminBase.html' %}
+{% block content %}
+<!-- Main content -->
+<div class="flex-1 flex flex-col">
+  <!-- Top Navigation Bar -->
+  <nav class="bg-white-800 text-white py-3 px-6 shadow-md">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <!-- Heading -->
+      <h2 class="text-3xl font-extrabold text-gray-700">Subject Management</h2>
+
+      <!-- Search Bar -->
+      <div class="relative w-full max-w-md">
+        <input 
+          type="text" 
+          placeholder="Search classrooms..." 
+          class="w-full p-3 pl-10 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        />
+        <svg 
+          class="absolute top-3 left-3 w-5 h-5 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2"
+            d="M11 4a7 7 0 100 14 7 7 0 000-14zm0 0l6 6"
+          />
+        </svg>
+      </div>
+
+      <!-- Add Subject Button -->
+      <button 
+        id="open-modal-btn" 
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+      >
+        Add Subject
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-1 overflow-y-auto p-5 space-y-6">
+    <!-- Subject List Table -->
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+      <thead class="bg-gray-100 text-gray-600">
+        <tr>
+          <th class="py-3 px-6 text-left text-sm font-semibold">Subject Code</th>
+          <th class="py-3 px-6 text-left text-sm font-semibold">Subject Name</th>
+          <th class="py-3 px-6 text-left text-sm font-semibold">Schedule</th>
+          <th class="py-3 px-6 text-left text-sm font-semibold">Time</th>
+          <th class="py-3 px-6 text-left text-sm font-semibold">Instructor</th>
+          <th class="py-3 px-6 text-left text-sm font-semibold">Status</th>
+          <th class="py-3 px-6 text-left text-sm font-semibold">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        {% for sub in subjects %}
+        <!-- Example Row -->
+        <tr class="border-t border-gray-200 hover:bg-gray-50">
+          <td class="py-3 px-6">CS101</td>
+          <td class="py-3 px-6">Introduction to Computer Science</td>
+          <td class="py-3 px-6">Mon, Wed, Fri</td>
+          <td class="py-3 px-6">10:00 AM - 11:30 AM</td>
+          <td class="py-3 px-6">Dr. Smith</td>
+          <td class="py-3 px-6">Active</td>
+          <td class="py-3 px-6">
+            <a href="#" class="text-blue-600 hover:underline">Edit</a> | 
+            <a href="#" class="text-red-600 hover:underline">Archive</a>
+          </td>
+        </tr>
+        {% endfor %}
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal -->
+<div 
+  id="modal" 
+  class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 hidden"
+>
+  <div class="bg-white rounded-lg shadow-md w-full max-w-lg mx-4 p-6">
+    <h3 class="text-xl font-semibold mb-4">Add New Subject</h3>
+    <form action="/adminAddSubject" method="POST">
+      <div class="mb-4">
+        <label for="subject-code" class="block text-gray-700">Subject Code</label>
+        <input 
+          type="text" 
+          id="subject-code" 
+          name="subject_code" 
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="subject-name" class="block text-gray-700">Subject Name</label>
+        <input 
+          type="text" 
+          id="subject-name" 
+          name="subject_name" 
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="schedule" class="block text-gray-700">Schedule</label>
+        <input 
+          type="text" 
+          id="schedule" 
+          name="schedule" 
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="time" class="block text-gray-700">Time</label>
+        <input 
+          type="text" 
+          id="time" 
+          name="time" 
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="instructor" class="block text-gray-700">Instructor</label>
+        <input 
+          type="text" 
+          id="instructor" 
+          name="instructor" 
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          required
+        />
+      </div>
+      <div class="mb-4">
+        <label for="status" class="block text-gray-700">Status</label>
+        <select 
+          id="status" 
+          name="status" 
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          required
+        >
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="room_id" class="block text-gray-700">room_id</label>
+        <input 
+          type="text" 
+          id="room_id" 
+          name="room_id" 
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          required
+        />
+      </div>
+      <div class="flex justify-end space-x-4">
+        <button 
+          type="button" 
+          id="close-modal-btn" 
+          class="bg-gray-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-gray-600 transition duration-300"
+        >
+          Cancel
+        </button>
+        <button 
+          type="submit" 
+          class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+        >
+          Add Subject
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Get modal elements
+  const modal = document.getElementById('modal');
+  const openModalBtn = document.getElementById('open-modal-btn');
+  const closeModalBtn = document.getElementById('close-modal-btn'); 
+
+  // Show modal
+  openModalBtn.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+  });
+
+  // Hide modal
+  closeModalBtn.addEventListener('click', () => {
+    modal.classList.add('hidden');
+  });
+
+  // Close modal when clicking outside of it
+  window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      modal.classList.add('hidden');
+    }
+  });
+</script>
+{% endblock %}

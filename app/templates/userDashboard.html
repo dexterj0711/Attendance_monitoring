@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex-1 flex flex-col bg-gray-100">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-white text-gray-800 py-3 px-6 shadow-md">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <!-- Heading -->
+      <h2 class="text-3xl font-extrabold">Dashboard</h2>
+
+      <!-- Search Bar -->
+      <div class="relative w-full max-w-md">
+        <input 
+          type="text" 
+          placeholder="Search classrooms..." 
+          class="w-full p-3 pl-10 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        />
+        <svg 
+          class="absolute top-3 left-3 w-5 h-5 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2"
+            d="M11 4a7 7 0 100 14 7 7 0 000-14zm0 0l6 6"
+          />
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-6 flex flex-col gap-6">
+
+    <!-- Dashboard Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+      <!-- Total Subjects Card -->
+      <div class="bg-white shadow-lg rounded-lg p-6 flex items-center space-x-4 border-l-4 border-blue-500">
+        <div class="w-16 h-16 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center">
+          <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8h18M3 12h18M3 16h18" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-2">Total Subjects</h2>
+          <div class="text-4xl font-bold text-gray-800">{{ total_subjects }}</div>
+        </div>
+      </div>
+
+      <!-- Total Classrooms Card -->
+      <div class="bg-white shadow-lg rounded-lg p-6 flex items-center space-x-4 border-l-4 border-green-500">
+        <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center">
+          <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h14v4H3zm0 6h14v-4H3z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-2">Total Classrooms</h2>
+          <div class="text-4xl font-bold text-gray-800">{{ total_classrooms }}</div>
+        </div>
+      </div>
+
+      <!-- Attendance History Card -->
+      <div class="bg-white shadow-lg rounded-lg p-6 flex items-center space-x-4 border-l-4 border-purple-500">
+        <div class="w-16 h-16 bg-purple-100 text-purple-500 rounded-full flex items-center justify-center">
+          <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l6 6-6 6M21 8l-6 6 6 6" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-2">Attendance History</h2>
+          <div class="text-4xl font-bold text-gray-800">{{ attendance_history }}</div>
+        </div>
+      </div>
+
+      <!-- Sent Messages Card -->
+      <div class="bg-white shadow-lg rounded-lg p-6 flex items-center space-x-4 border-l-4 border-red-500">
+        <div class="w-16 h-16 bg-red-100 text-red-500 rounded-full flex items-center justify-center">
+          <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l-5 5l5-5l5 5l5-5l-5 5l-5-5zM5 5h14v2H5V5z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-2">Sent Messages</h2>
+          <div class="text-4xl font-bold text-gray-800">1002</div>
+        </div>
+      </div>
+
+      <!-- Outbox Card -->
+      <div class="bg-white shadow-lg rounded-lg p-6 flex items-center space-x-4 border-l-4 border-yellow-500">
+        <div class="w-16 h-16 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center">
+          <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17l-5 5l5-5l5 5l5-5l-5 5l-5-5zM5 5h14v2H5V5z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-2">Outbox</h2>
+          <div class="text-4xl font-bold text-gray-800">10</div>
+        </div>
+      </div>
+
+      <!-- Student Summary Card -->
+      <div class="bg-white shadow-lg rounded-lg p-6 flex items-center space-x-4 border-l-4 border-orange-500">
+        <div class="w-16 h-16 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center">
+          <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v9.75l6.75 3.75V12l-6.75-3.75L12 3z" />
+          </svg>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold mb-2">Student Summary</h2>
+          <div class="text-4xl font-bold text-gray-800">10</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sections Below Dashboard Cards -->
+    <div class="flex flex-col lg:flex-row gap-6">
+
+      <!-- Subject List Section -->
+      <div class="bg-white shadow-lg rounded-lg p-4 w-90 flex-1 flex flex-col">
+        <h3 class="text-xl font-semibold mb-4">Subjects List</h3>
+        <div class="flex-1 overflow-auto">
+          <table class="w-full border-collapse" id="subjectsTable">
+            <thead>
+              <tr class="bg-gray-200 border-b">
+                <th class="p-2 text-left text-gray-600">Subject Code</th>
+                <th class="p-2 text-left text-gray-600">Subject Name</th>
+                <th class="p-2 text-left text-gray-600">Schedule</th>
+                <th class="p-2 text-left text-gray-600">Time</th>
+                <th class="p-2 text-left text-gray-600">Instructor</th>
+              </tr>
+            </thead>
+            <tbody>
+             {% for sub in subjects %}
+              <tr>
+                <td class="p-2">{{sub[1]}}</td>
+                <td class="p-2">{{sub[2]}}</td>
+                <td class="p-2">{{sub[3]}}</td>
+                <td class="p-2">{{sub[4]}}</td>
+                <td class="p-2">{{sub[5]}}</td>
+              </tr>
+              {% endfor %}
+             
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+          <!-- Pagination Controls -->
+          <div class="flex justify-center mt-4" id="subjectsPagination">
+            <!-- Pagination controls will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Classroom List Section -->
+      <div class="bg-white shadow-lg rounded-lg p-4 w-full md:w-1/4 flex flex-col">
+        <h3 class="text-xl font-semibold mb-4">Classrooms List</h3>
+        <div class="flex-1 overflow-auto">
+          <table class="w-full border-collapse" id="classroomsTable">
+            <thead>
+              <tr class="bg-gray-200 border-b">
+                <th class="p-2 text-left text-gray-600">Room Name</th>
+                <th class="p-2 text-left text-gray-600">Room Number</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example Rows (repeat or generate dynamically) -->
+              <tr>
+                <td class="p-2">Room A</td>
+                <td class="p-2">101</td>
+              </tr>
+              
+              
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+          <!-- Pagination Controls -->
+          <div class="flex justify-center mt-4" id="classroomsPagination">
+            <!-- Pagination controls will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Pagination variables
+  const subjectsTable = document.getElementById('subjectsTable');
+  const classroomsTable = document.getElementById('classroomsTable');
+  const subjectsPagination = document.getElementById('subjectsPagination');
+  const classroomsPagination = document.getElementById('classroomsPagination');
+  
+  const subjectsPerPage = 5;
+  const classroomsPerPage = 5;
+  
+  // Function to paginate tables
+  function paginateTable(table, paginationContainer, itemsPerPage) {
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    const totalPages = Math.ceil(rows.length / itemsPerPage);
+    
+    function renderPage(page) {
+      rows.forEach((row, index) => {
+        row.style.display = (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) ? '' : 'none';
+      });
+      updatePagination(page, totalPages);
+    }
+    
+    function updatePagination(currentPage, totalPages) {
+      paginationContainer.innerHTML = '';
+      const prevButton = document.createElement('button');
+      prevButton.textContent = 'Previous';
+      prevButton.disabled = currentPage === 1;
+      prevButton.className = 'px-4 py-2 mx-1 border rounded-lg transition-colors duration-200';
+      prevButton.addEventListener('click', () => renderPage(currentPage - 1));
+      paginationContainer.appendChild(prevButton);
+      
+      for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.className = 'px-4 py-2 mx-1 border rounded-lg transition-colors duration-200';
+        if (i === currentPage) {
+          pageButton.disabled = true;
+          pageButton.className += ' bg-blue-500 text-white';
+        } else {
+          pageButton.addEventListener('click', () => renderPage(i));
+        }
+        paginationContainer.appendChild(pageButton);
+      }
+      
+      const nextButton = document.createElement('button');
+      nextButton.textContent = 'Next';
+      nextButton.disabled = currentPage === totalPages;
+      nextButton.className = 'px-4 py-2 mx-1 border rounded-lg transition-colors duration-200';
+      nextButton.addEventListener('click', () => renderPage(currentPage + 1));
+      paginationContainer.appendChild(nextButton);
+    }
+    
+    renderPage(1);
+  }
+
+  // Initialize pagination
+  paginateTable(subjectsTable, subjectsPagination, subjectsPerPage);
+  paginateTable(classroomsTable, classroomsPagination, classroomsPerPage);
+});
+</script>
+{% endblock %}

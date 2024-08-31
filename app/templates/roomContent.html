@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Main content -->
+<div class="flex-1 flex flex-col">
+  <!-- Top Navigation Bar -->
+  <nav class="bg-white-800 text-white py-3 px-6 shadow-md">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <!-- Heading -->
+      <h2 class="text-3xl font-extrabold text-gray-700">Subjects</h2>
+
+      <!-- Search Bar -->
+      <div class="relative w-full max-w-md ">
+        <input 
+          type="text" 
+          placeholder="Search classrooms..." 
+          class="w-full p-3 pl-10 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        />
+        <svg 
+          class="absolute top-3 left-3 w-5 h-5 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2"
+            d="M11 4a7 7 0 100 14 7 7 0 000-14zm0 0l6 6"
+          />
+        </svg>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-1 overflow-y-auto p-6">
+    <!-- Classroom Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <!-- Example Classroom Items -->
+      <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col relative">
+        <div class="flex flex-col h-full">
+          <!-- Header Section -->
+          <div class="bg-gray-200 p-4 rounded-t-lg flex items-center justify-center">
+            <!-- Updated Book Icon -->
+            <svg 
+              class="w-16 h-16 text-blue-500"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                stroke-width="2"
+                d="M6 2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm0 2v16h12V4H6zm6 3h4v2h-4V7z"
+              />
+            </svg>
+          </div>
+          <!-- Body Section -->
+          <div class="p-4 flex flex-col space-y-4">
+            <div class="flex flex-col">
+              <span class="text-gray-600 font-medium">Subject Code:</span>
+              <span class="text-gray-800 text-sm">SUBJ001</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-600 font-medium">Subject Name:</span>
+              <span class="text-gray-800 text-sm">Mathematics</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-600 font-medium">Schedule:</span>
+              <span class="text-gray-800 text-sm">Mon, Wed, Fri - 9:00 AM - 10:30 AM</span>
+            </div>
+          </div>
+          <!-- Footer Section -->
+          <div class="pt-4">
+            <a href="{{ url_for('attendance.attendance')}}" class="block w-full bg-gray-600 text-white text-center py-2 rounded-lg hover:bg-gray-700 transition duration-300">Go Class</a>
+          </div>
+        </div>
+      </div>
+      <div class="bg-gray-50 p-6 rounded-lg shadow-lg border border-gray-300 flex flex-col relative">
+        <div class="flex flex-col h-full">
+          <!-- Header Section -->
+          <div class="bg-gray-200 p-4 rounded-t-lg flex items-center justify-center">
+            <!-- Updated Book Icon -->
+            <svg 
+              class="w-16 h-16 text-green-500"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                stroke-width="2"
+                d="M6 2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4a2 2 0 012-2zm0 2v16h12V4H6zm6 3h4v2h-4V7z"
+              />
+            </svg>
+          </div>
+          <!-- Body Section -->
+          <div class="p-4 flex flex-col space-y-4">
+            <div class="flex flex-col">
+              <span class="text-gray-600 font-medium">Subject Code:</span>
+              <span class="text-gray-800 text-sm">SUBJ002</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-600 font-medium">Subject Name:</span>
+              <span class="text-gray-800 text-sm">Science</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-gray-600 font-medium">Schedule:</span>
+              <span class="text-gray-800 text-sm">Tue, Thu - 11:00 AM - 12:30 PM</span>
+            </div>
+          </div>
+          <!-- Footer Section -->
+          <div class="pt-4">
+            <a href="/classrooms/classroom-b" class="block w-full bg-gray-600 text-white text-center py-2 rounded-lg hover:bg-gray-700 transition duration-300">Go Class</a>
+          </div>
+        </div>
+      </div>
+      
+      
+      <!-- Add more classrooms as needed -->
+    </div>
+  </div>
+</div>
+{% endblock %}
