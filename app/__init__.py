@@ -14,6 +14,7 @@ from .routes.adminAddClassroom import bp as adminAddClassroom_bp
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = 'dexterjaemsdegayo'
     
     # Set default configuration
     app.config.from_object(Config)
