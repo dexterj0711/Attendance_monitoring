@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, current_app
+from flask import Blueprint, render_template, request, redirect, current_app, flash
 import mysql.connector
 
 bp = Blueprint('adminAddsubject', __name__, template_folder='templates')
@@ -23,17 +23,18 @@ def adminAddSubject():
                            (subject_code, subject_name, schedule, time, instructor, status, room_id))
             conn.commit()
 
+            flash('Subject successfully added!', 'success')
             return redirect('/adminAddSubject') 
             
         except mysql.connector.Error as err:
             print(f"Error: {err}")
-            return render_template('error.html', error=str(err))
+            flash(f"Error: {err}", 'error')
+            return redirect('/adminAddSubject')
         
         finally:
             if cursor:
                 cursor.close()
 
-  
     try:
         conn = current_app.mysql
         cursor = conn.cursor()
