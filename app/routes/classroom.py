@@ -9,7 +9,7 @@ def classroom():
         cursor = conn.cursor()
         cursor.execute('select * from Rooms')
         classrooms = cursor.fetchall()
-        print(classrooms)
+
     except mysql.connector.Error as e:
         return f"mysql error: {e}"
   
