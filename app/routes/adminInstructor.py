@@ -7,6 +7,7 @@ bp = Blueprint('adminInstructor',__name__,template_folder='templates')
 def adminInstructor():
 
     if request.method == 'POST':
+        instructor_id= request.form['USN']
         instructor_name = request.form['instructor_name']
         department = request.form['department']
         profile_picture = request.form['profile_picture']
@@ -14,7 +15,7 @@ def adminInstructor():
         try:
             conn = current_app.mysql
             cursor = conn.cursor()
-            cursor.execute('insert into instructor(instructor_name,department,profile_picture) Values(%s,%s,%s)',(instructor_name,department,profile_picture))
+            cursor.execute('insert into instructor(instructor_id,instructor_name,department,profile_picture) Values(%s,%s,%s,%s)',(instructor_id,instructor_name,department,profile_picture))
             conn.commit()
             return redirect('/adminInstructor')
         except mysql.connector.Error as e:
